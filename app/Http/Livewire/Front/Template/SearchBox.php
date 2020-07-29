@@ -15,7 +15,7 @@ class SearchBox extends Component
     {
         $this->searchProduct=Product::search($this->searchbox)->get();
         Session::put('searchProduct',$this->searchProduct);
-        return redirect()->to(route('search-page'));
+        return redirect()->to(route('search'));
     }
     public function render()
     {

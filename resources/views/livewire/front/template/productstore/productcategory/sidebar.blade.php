@@ -1,18 +1,16 @@
-<div>
+
     <aside class="aa-sidebar">
         <!-- single sidebar -->
         <div class="aa-sidebar-widget">
           <h3>Category</h3>
           <ul class="aa-catg-nav">
-            <li><a href="#">Men</a></li>
-            <li><a href="">Women</a></li>
-            <li><a href="">Kids</a></li>
-            <li><a href="">Electornics</a></li>
-            <li><a href="">Sports</a></li>
+            @foreach ($categories as $category)               
+            <li><a wire:click="$emit('filter','category',{{$category->id}})">{{$category->name}}</a></li>
+            @endforeach
           </ul>
         </div>
         <!-- single sidebar -->
-        <div class="aa-sidebar-widget">
+        {{-- <div class="aa-sidebar-widget">
           <h3>Tags</h3>
           <div class="tag-cloud">
             <a href="#">Fashion</a>
@@ -23,42 +21,52 @@
             <a href="#">Head Phone</a>
             <a href="#">Pen Drive</a>
           </div>
-        </div>
+        </div> --}}
         <!-- single sidebar -->
         <div class="aa-sidebar-widget">
           <h3>Shop By Price</h3>              
           <!-- price range -->
           <div class="aa-sidebar-price-range">
-           <form action="">
+           <form id="range" name="range">
               <div id="skipstep" class="noUi-target noUi-ltr noUi-horizontal noUi-background">
               </div>
+              <input type="hidden"  name="minPrice" id="minPrice">
+              <input type="hidden" name="maxPrice"  id="maxPrice">
               <span id="skip-value-lower" class="example-val">30.00</span>
              <span id="skip-value-upper" class="example-val">100.00</span>
-             <button class="aa-filter-btn" type="submit">Filter</button>
+             <button class="aa-filter-btn" onclick="priceRange()" type="button">Filter</button>
            </form>
-          </div>              
-
+          </div>
+          {{-- <script>
+            function priceRange() {
+              // event.preventDefault();
+              let minPriceString=document.getElementById('skip-value-lower').innerText;
+              let maxPriceString=document.getElementById('skip-value-upper').innerText;
+              let minPrice=parseInt(minPriceString);
+              let maxPrice=parseInt(maxPriceString);
+              let min=document.getElementById("minPrice");
+              let max=document.getElementById("maxPrice");
+              min.value=minPrice;
+              max.value=maxPrice;
+            
+              let form=document.getElementById("range");
+              form.submit();
+              
+            
+            }
+          </script>               --}}
         </div>
         <!-- single sidebar -->
         <div class="aa-sidebar-widget">
           <h3>Shop By Color</h3>
           <div class="aa-color-tag">
-            <a class="aa-color-green" href="#"></a>
-            <a class="aa-color-yellow" href="#"></a>
-            <a class="aa-color-pink" href="#"></a>
-            <a class="aa-color-purple" href="#"></a>
-            <a class="aa-color-blue" href="#"></a>
-            <a class="aa-color-orange" href="#"></a>
-            <a class="aa-color-gray" href="#"></a>
-            <a class="aa-color-black" href="#"></a>
-            <a class="aa-color-white" href="#"></a>
-            <a class="aa-color-cyan" href="#"></a>
-            <a class="aa-color-olive" href="#"></a>
-            <a class="aa-color-orchid" href="#"></a>
+            @foreach ($colors as $color)
+              <a style="background-color: {{$color}};" wire:click="$emit('filter','color','{{$color}}')"></a>
+            @endforeach
           </div>                            
         </div>
         <!-- single sidebar -->
-        <div class="aa-sidebar-widget">
+        {{-- <div class="aa-sidebar-widget">
           <h3>Recently Views</h3>
           <div class="aa-recently-views">
             <ul>
@@ -85,9 +93,9 @@
               </li>                                      
             </ul>
           </div>                            
-        </div>
+        </div> --}}
         <!-- single sidebar -->
-        <div class="aa-sidebar-widget">
+        {{-- <div class="aa-sidebar-widget">
           <h3>Top Rated Products</h3>
           <div class="aa-recently-views">
             <ul>
@@ -114,6 +122,5 @@
               </li>                                      
             </ul>
           </div>                            
-        </div>
+        </div> --}}
       </aside>
-</div>

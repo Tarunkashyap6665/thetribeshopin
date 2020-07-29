@@ -8,16 +8,26 @@ use Darryldecode\Cart\Facades\CartFacade as Cart;
 use App\Product;
 use Darryldecode\Cart\CartCondition;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 
 class ProductCart extends Component
 {
     public $coupon;
-    public $active=0;
+    public $msg;
+    public $key;
+    public $type;
+    public $userId;
     
     public function mount(){
+        if(Auth::check()){
+            $this->userId=Auth::user()->id;
+        }
+        else{
+            $this->userId=session()->get('userId');
+        }
         if (Session::has('coupon')) {
-            Cart::session(1)->removecartCondition(Session::get('coupon'));
+            Cart::session($this->userId)->removecartCondition(Session::get('coupon'));
         }
     }
 
@@ -32,21 +42,25 @@ class ProductCart extends Component
         $conditionData=CouponDiscount::select('name','type','target','value')->where('name',$this->coupon)->get()->first();
         if($conditionData!=null){
             $condition=new CartCondition($conditionData->toArray());
-            Cart::session(1)->condition($condition);
+            Cart::session($this->userId)->condition($condition);
             Session::put('coupon',$this->coupon);
-            $this->active=1;
             $this->model="";
+            $this->msg="Coupon Applied..";
+            $this->type="success";
+            $this->key="success";
         }
         else{
-            session()->flash('error','invalid coupon applied..');
+            $this->msg="Invalid coupon code..";
+            $this->key="error";
+            $this->type="danger";
         }
     }
 
     public function removeCoupon($couponName)
     {
-        Cart::session(1)->removecartCondition($couponName);
+        Cart::session($this->userId)->removecartCondition($couponName);
         $this->model="";
-        $this->active=0;
+        $this->key="";
     }
 
     /**
@@ -57,13 +71,13 @@ class ProductCart extends Component
      */
     public function removeCartItem($itemId) 
     {
-        Cart::session(1)->remove($itemId);
+        Cart::session($this->userId)->remove($itemId);
     }
 
    public function addToWishlist($itemId)
    {
     $product=Product::find($itemId);
-    app('wishlist')->session(1)->add([
+    app('wishlist')->session($this->userId)->add([
         'id'=>$product->id,
         'name'=>$product->name,
         'price'=>$product->price,
@@ -74,8 +88,8 @@ class ProductCart extends Component
         'associatedModel'=>$product
     ]);
     
-    if (Cart::session(1)->has($itemId)){
-        Cart::session(1)->remove($itemId);
+    if (Cart::session($this->userId)->has($itemId)){
+        Cart::session($this->userId)->remove($itemId);
     }
    }
     public function render()

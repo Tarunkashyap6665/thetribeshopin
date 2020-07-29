@@ -5,8 +5,8 @@
             <div class="col-md-12">
              <div class="aa-myaccount-area">         
                  <div class="row">
-                   <div class="col-md-6 col-md-offset-3 aa-browse-btn">
-                     <div class="aa-myaccount-login">
+                   <div class="col-md-6 col-md-offset-3 bg-danger">
+                     <div class="aa-myaccount-login" style="padding: 15px 5px;">
                      <h4>Login</h4>
                       <form action="" class="aa-login-form">
                        <label for="">Username or Email address<span>*</span></label>

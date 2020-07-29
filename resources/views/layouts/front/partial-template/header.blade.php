@@ -56,10 +56,10 @@
                 @guest
                   <li><a href="" data-toggle="modal" data-target="#login-modal">Login</a></li>
                 @else
-                  <li><a href="{{ route('userlogout') }}"
+                  <li><a href="{{ route('logout') }}"
                     onclick="event.preventDefault();
                                   document.getElementById('logout-form').submit();" >logout</a></li>
-                  <form id="logout-form" action="{{ route('userlogout') }}" method="POST" style="display: none;">
+                  <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                     @csrf
                 </form>
                 @endguest
@@ -82,9 +82,9 @@
             <div class="aa-logo">
               <!-- Text based logo -->
               <a href="/">
-                <span class="fa fa-shopping-cart"></span>
+                {{-- <span class="fa fa-shopping-cart"></span> --}}
                 {{-- <img src="{{asset('storage/'.setting('site.logo'))}}" alt=""> --}}
-                <p>tribe<strong>Shop</strong> <span>Your Shopping Partner</span></p>
+                <p>tribe<strong>Shop</strong></p>
               </a>
               <!-- img based logo -->
               <!-- <a href="index.html"><img src={{asset("front_assets/img/logo.jpg")}} alt="logo img"></a> -->

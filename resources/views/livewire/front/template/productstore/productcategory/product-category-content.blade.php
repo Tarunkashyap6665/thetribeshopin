@@ -58,7 +58,7 @@
               </li>
             </ul>
           </nav> --}}
-          {{$products->links()}}
+        
         </div>
       </div>
 </div>

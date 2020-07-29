@@ -5,10 +5,22 @@ namespace App\Http\Livewire\Front;
 use Darryldecode\Cart\CartCondition;
 use Livewire\Component;
 use Darryldecode\Cart\Facades\CartFacade as Cart;
+use Illuminate\Contracts\Session\Session;
+use Illuminate\Support\Facades\Auth;
+
 class Homepage extends Component
 {
+    public $userId;
     public function mount()
     {
+        session()->put('userId',random_int(10,100));
+        if(Auth::check()){
+            $this->userId=Auth::user()->id;
+        }
+        else{
+            $this->userId=session()->get('userId');
+            
+        }
         $taxCondition=new CartCondition([
             'name'=>'GST 18% tax',
             'type'=>'tax',
@@ -19,7 +31,7 @@ class Homepage extends Component
             ]
         ]);
 
-        Cart::session(1)->condition($taxCondition);
+        Cart::session($this->userId)->condition($taxCondition);
     }
     public function render()
     {

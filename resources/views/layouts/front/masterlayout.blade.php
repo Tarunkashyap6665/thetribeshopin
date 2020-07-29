@@ -1,7 +1,7 @@
 @extends('layouts.front.partial-template.basic')
 
 @section('loader')
-    @include('layouts.front.partial-template.loader')
+@include('layouts.front.partial-template.loader')
 @endsection
 @section('body')
 @include('layouts.front.partial-template.header')
@@ -20,6 +20,7 @@
         let quickCartBtn = document.querySelectorAll('#qkct' + itemId)
         let wishlistBtn = document.querySelectorAll('#wishlist' + itemId);
         let wishIconBtn = document.querySelectorAll('#wishIcon' + itemId);
+        let token="{{session()->get('_token')}}"
         let quantity = 1;
         if (document.getElementById('quantity' + itemId) != null) {
             quantity = document.getElementById('quantity' + itemId).value;
@@ -28,6 +29,7 @@
         data = {
             itemId: itemId,
             quantity: parseInt(quantity),
+            token:token,
         }
         params = {
             method: 'POST',
@@ -46,8 +48,8 @@
                     cartIcon=document.createElement("span");
                     cartIcon.className="fa fa-shopping-cart";
                     cartBtn.appendChild(cartIcon)
-                    textNode=document.createTextNode("Added To Cart");
-                    cartBtn.appendChild(textNode);
+                    // textNode=document.createTextNode("Added To Cart");
+                    // cartBtn.appendChild(textNode);
                     console.log("if",cartBtn.textContent);
 
                     } else {
@@ -93,6 +95,7 @@
         let wishIconBtn = document.querySelectorAll('#wishIcon' + itemId);
         let cartBtn = document.querySelectorAll('#cart' + itemId);
         let quantity = 1;
+        let token="{{session()->get('_token')}}"
         if (document.getElementById('quantity' + itemId) != null) {
             quantity = document.getElementById('quantity' + itemId).value;
         }
@@ -100,6 +103,7 @@
         data = {
             itemId: itemId,
             quantity: quantity,
+            token:token
         }
         params = {
             method: 'POST',
@@ -135,10 +139,10 @@
                     console.log("if",cartBtn.firstElementChild);
                     cartBtn.innerHTML="";
                     cartIcon=document.createElement("span");
-                    cartIcon.className="fa fa-shopping-cart";
+                    cartIcon.className="fa fa-opencart";
                     cartBtn.appendChild(cartIcon)
-                    textNode=document.createTextNode("Add To Cart");
-                    cartBtn.appendChild(textNode);
+                    // textNode=document.createTextNode("Add To Cart");
+                    // cartBtn.appendChild(textNode);
                     console.log("if",cartBtn.textContent);
 
                     } else {

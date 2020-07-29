@@ -4,10 +4,22 @@ namespace App\Http\Livewire\Front\Template;
 
 use Livewire\Component;
 use Darryldecode\Cart\Facades\CartFacade as Cart;
+use Illuminate\Support\Facades\Auth;
 
 class HeaderShoppingCart extends Component
 {
     public $active=false;
+    public $userId;
+
+    public function mount()
+    {
+        if(Auth::check()){
+            $this->userId=Auth::user()->id;
+        }
+        else{
+            $this->userId=session()->get('userId');
+        }
+    }
     public function enableCartBox()
     {
         $this->active=true;
@@ -26,7 +38,7 @@ class HeaderShoppingCart extends Component
      */
     public function removeCartItem($itemId) 
     {
-        Cart::session(1)->remove($itemId);
+        Cart::session($this->userId)->remove($itemId);
     }
 
     public function render()

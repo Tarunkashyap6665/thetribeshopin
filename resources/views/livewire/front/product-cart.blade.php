@@ -3,6 +3,15 @@
   <!-- catg header banner section -->
   <livewire:front.template.category-banner />
   <!-- / catg header banner section -->
+  @php
+  if(Auth::check()){
+    $userId=Auth::user()->id;
+  }
+  else{
+    $userId=session()->get('userId');
+  }
+  dd($userId);
+  @endphp
   <!-- Cart view section -->
   <section id="cart-view">
     <div class="container">
@@ -24,7 +33,7 @@
                       </tr>
                     </thead>
                     <tbody>
-                      @forelse (\Cart::session(1)->getContent() as $cart)
+                      @forelse (\Cart::session($userId)->getContent() as $cart)
                       <tr id="cart{{$cart->id}}">
                         @php
                         if($cart->attributes->image!=null){
@@ -72,27 +81,26 @@
                         </td>
                       </tr>
                       @endforelse
-                      @if (!\Cart::session(1)->getContent()->isEmpty())
+                      @if (!\Cart::session($userId)->getContent()->isEmpty())
                       <tr>
                         <td colspan="6" class="aa-cart-view-bottom">
                           <div class="aa-cart-coupon">
-                            @if ($active==0)
                               <input class="aa-coupon-code" wire:model.lazy="coupon" type="text" placeholder="Coupon">
                               <button class="aa-cart-view-btn" wire:click="applyCoupon">Apply Coupon</button>
-                              @if (Session::has('error'))
-                              <div style="background-color: #da464640;border-radius:4px;margin-top:15px;">
-                                <p style="color: rgb(143, 37, 37); margin:0px;padding:10px 0px">
-                                  {{Session::get('error')}}
-                                </p>
+                              @if ($key)
+                            
+                              <div class="alert alert-{{$type}} alert-dismissible" style="margin-top: 5px;" role="alert">
+                                @if ($type=="success")
+                                <button type="button" wire:click="removeCoupon('{{$coupon}}')" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                @else
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                @endif
+                                <strong>{{$type}}!</strong> {{$msg}}
                               </div>
+                      
                               @endif
                               
-                            @else
-                                <div>
-                                  <p>{{$coupon}} applied.</p>
-                                  <a class="aa-remove-product" style="cursor: pointer" wire:click="removeCoupon('{{$coupon}}')"><span class="fa fa-times"></span></a>
-                                </div>
-                            @endif
+                              
                           </div>
                         </td>
                       </tr>
@@ -110,7 +118,7 @@
                 </div>
               {{-- </form> --}}
               <!-- Cart Total view -->
-              @if (!\Cart::session(1)->getContent()->isEmpty())
+              @if (!\Cart::session($userId)->getContent()->isEmpty())
               <tr>
                 <div class="cart-view-total">
                   <h4>Cart Totals</h4>
@@ -118,30 +126,30 @@
                     <tbody>
                       <tr>
                         <th>Subtotal</th>
-                        <td id="subtotal">${{\Cart::session(1)->getSubTotal()}}</td>
+                        <td id="subtotal">${{\Cart::session($userId)->getSubTotal()}}</td>
                       </tr>
                       <tr>
                         <th>GST</th>
-                        <td>{{\Cart::session(1)->getCondition('GST 18% tax')->getValue()}}</td>
+                        <td>{{\Cart::session($userId)->getCondition('GST 18% tax')->getValue()}}</td>
                       </tr>
-                      @if ($active)
+                      @if ($key=="success")
                       <tr>
                         <th>
                           {{strtoupper($coupon)}}
                         </th>
                         <td>
-                          {{\Cart::session(1)->getCondition($coupon)->getValue()}}
+                          {{\Cart::session($userId)->getCondition($coupon)->getValue()}}
                         </td>
                       </tr>
                       @endif
                       
                       <tr>
                         <th>Total</th>
-                        <td id="total">${{\Cart::session(1)->getTotal()}}</td>
+                        <td id="total">${{\Cart::session($userId)->getTotal()}}</td>
                       </tr>
                     </tbody>
                   </table>
-                  <a href="#" class="aa-cart-view-btn">Proced to Checkout</a>
+                  <a href="{{route('checkout')}}" class="aa-cart-view-btn">Proced to Checkout</a>
                 </div>
               @endif
             </div>

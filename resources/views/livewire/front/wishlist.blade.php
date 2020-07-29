@@ -3,6 +3,14 @@
   <!-- catg header banner section -->
   <livewire:front.template.category-banner :page="'Fashion'" :type="'Women'">
     <!-- / catg header banner section -->
+    @php
+  if(Auth::check()){
+    $userId=Auth::user()->id;
+  }
+  else{
+    $userId=session()->get('userId');
+  }
+  @endphp
     <!-- Cart view section -->
     <section id="cart-view">
       <div class="container">
@@ -23,7 +31,7 @@
                         </tr>
                       </thead>
                       <tbody>
-                        @forelse (app('wishlist')->session(1)->getContent() as $wishlist)
+                        @forelse (app('wishlist')->session($userId)->getContent() as $wishlist)
                         @php
                         if($wishlist->attributes->image!=null){
                         $imagePath='storage/'.$wishlist->attributes->image;

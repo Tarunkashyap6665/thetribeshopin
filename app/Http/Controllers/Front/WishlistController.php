@@ -7,9 +7,11 @@ use App\Product;
 use Darryldecode\Cart\Facades\CartFacade as Cart;
 use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class WishlistController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      *
@@ -18,7 +20,6 @@ class WishlistController extends Controller
     public function index()
     {
 
-        dd(app('wishlist')->session(1)->getContent());
     }
 
     /**
@@ -29,9 +30,16 @@ class WishlistController extends Controller
      */
     public function store(Request $request)
     {
+        if(Auth::check()){
+            $this->userId=Auth::user()->id;
+        }
+        else{
+            
+            $this->userId=$request->token;
+        }
         $product=Product::find($request->itemId);
         $imageArray=json_decode($product->haveAttribute->images);
-        app('wishlist')->session(1)->add([
+        app('wishlist')->session($this->userId)->add([
             'id'=>$product->id,
             'name'=>$product->name,
             'price'=>$product->price,
@@ -42,11 +50,12 @@ class WishlistController extends Controller
             'associatedModel'=>'Product'
         ]);
         
-        if (Cart::session(1)->has($request->itemId)){
-            Cart::session(1)->remove($request->itemId);
+        if (Cart::session($this->userId)->has($request->itemId)){
+            Cart::session($this->userId)->remove($request->itemId);
         }
 
-        $count=Cart::session(1)->getContent()->count();
+        $count=Cart::session($this->userId)->getContent()->count();
+            // return response()->json(['itemCount'=>$this->userId]);
         return response()->json(['message'=>'Item Added to whislist...','itemCount'=>$count],Response::HTTP_CREATED);
     }
 

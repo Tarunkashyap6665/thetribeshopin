@@ -1,6 +1,13 @@
 <div>
   @inject('imageIntervention', 'Intervention\Image\ImageManagerStatic')
-
+  @php
+  if(Auth::check()){
+    $userId=Auth::user()->id;
+  }
+  else{
+    $userId=session()->get('userId');
+  }
+  @endphp
   <div class="modal fade {{$active==true?'in':''}}" id="quick-view-modal" tabindex="-1" role="dialog"
     aria-labelledby="myModalLabel" aria-hidden="true" style="display: {{$active==true?'block':'none'}};">
     <div class="modal-dialog">
@@ -21,7 +28,7 @@
                     <div class="simpleLens-big-image-container">
                       <a class="simpleLens-lens-image"
                         data-lens-image={{$imageIntervention::make($imagePath)->resize(900,1024)->encode('data-url')}}>
-                        <img src={{asset($imagePath)}} class="simpleLens-big-image">
+                        <img src={{$imageIntervention::make($imagePath)->resize(250,300)->encode('data-url')}} class="simpleLens-big-image">
                       </a>
                     </div>
                   </div>
@@ -33,7 +40,7 @@
                     <a href="#" class="simpleLens-thumbnail-wrapper"
                       data-lens-image={{$imageIntervention::make($imagePath)->resize(900,1024)->encode('data-url')}}
                       data-big-image={{asset($imagePath)}}>
-                      <img src={{asset($imagePath)}} width="45px">
+                      <img src={{$imageIntervention::make($imagePath)->resize(250,300)->encode('data-url')}} width="45px">
                     </a>
                     @endforeach
                   </div>
@@ -65,7 +72,7 @@
                   </p>
                 </div>
                 <div class="aa-prod-view-bottom">
-                  @if (\Cart::session(1)->get($product->id))
+                  @if (\Cart::session($userId)->get($product->id))
                   <a class="aa-add-to-cart-btn" id="qkct{{$product->id}}" href="{{route('cart')}}">Added To Cart</a>
                   @else
                   <a class="aa-add-to-cart-btn" id="qkct{{$product->id}}" onclick="addToCart(this.id)"

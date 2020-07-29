@@ -6,6 +6,15 @@
      $imageArray=json_decode($imageString);
      $imagePath='storage/'.$imageArray[0];
     @endphp
+
+@php
+if(Auth::check()){
+  $userId=Auth::user()->id;
+}
+else{
+  $userId=session()->get('userId');
+}
+@endphp
     <div class="col-md-5 col-sm-5 col-xs-12">
         <div class="aa-product-view-slider">
             <div class="simpleLens-gallery-container" id="demo-1">
@@ -67,13 +76,13 @@
                 </p>
             </div>
             <div class="aa-prod-view-bottom">
-                @if (\Cart::session(1)->get($product->id))
+                @if (\Cart::session($userId)->get($product->id))
                 <a class="aa-add-to-cart-btn" id="cart{{$product->id}}" href="{{route('cart')}}">Added To Cart</a>
                 @else
                 <a class="aa-add-to-cart-btn" id="cart{{$product->id}}" onclick="addToCart(this.id)" style="cursor: pointer;">Add To Cart</a>
                 @endif
 
-                @if (app('wishlist')->session(1)->get($product->id))
+                @if (app('wishlist')->session($userId)->get($product->id))
                 <a class="aa-add-to-cart-btn" id="wishlist{{$product->id}}" href="{{route('wishlist')}}">Added To Wishlist</a>
                 @else
                 <a class="aa-add-to-cart-btn" id="wishlist{{$product->id}}" onclick="addToWishlist(this.id)" style="cursor: pointer;">Wishlist</a>

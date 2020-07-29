@@ -1,12 +1,20 @@
 <div class="aa-cartbox" wire:mouseleave="disableCartBox">
+  @php
+  if(Auth::check()){
+    $userId=Auth::user()->id;
+  }
+  else{
+    $userId=session()->get('userId');
+  }
+  @endphp
     <a class="aa-cart-link" href="{{route('cart')}}" wire:mouseenter="enableCartBox">
       <span class="fa fa-shopping-basket"></span>
       <span class="aa-cart-title">SHOPPING CART</span>
-      <span class="aa-cart-notify" id="itemCount">{{\Cart::session(1)->getContent()->count()}}</span>
+      <span class="aa-cart-notify" id="itemCount">{{\Cart::session($userId)->getContent()->count()}}</span>
     </a>
     <div class="aa-cartbox-summary" style="{{$active?'display:block':''}}">
       <ul id="carts">
-        @forelse (\Cart::session(1)->getContent() as $cart)
+        @forelse (\Cart::session($userId)->getContent() as $cart)
         <li>
           @php
           if($cart->attributes->image!=null){
@@ -27,13 +35,13 @@
         @empty
 
         @endforelse
-        @if (!\Cart::session(1)->isEmpty())
+        @if (!\Cart::session($userId)->isEmpty())
         <li>
           <span class="aa-cartbox-total-title">
             Total <h5 style="display: inline;">(GST included.)</h5>
           </span>
           <span class="aa-cartbox-total-price">
-            ${{\Cart::session(1)->getTotal()}}
+            ${{\Cart::session($userId)->getTotal()}}
           </span>
         </li>
       </ul>

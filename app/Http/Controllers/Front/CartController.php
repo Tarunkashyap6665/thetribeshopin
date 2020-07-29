@@ -6,11 +6,14 @@ use App\Http\Controllers\Controller;
 use App\Product;
 use Illuminate\Http\Request;
 use Darryldecode\Cart\Facades\CartFacade as Cart;
+use Illuminate\Support\Facades\Auth;
 use Intervention\Image\ImageManagerStatic;
 use Symfony\Component\HttpFoundation\Response;
 
 class CartController extends Controller
 {
+    public $userId;
+
     /**
      * Display a listing of the resource.
      *
@@ -19,8 +22,6 @@ class CartController extends Controller
     public function index()
     {
         
-
-        dd(Cart::session(1)->has(15));
     }
     
     /**
@@ -32,9 +33,15 @@ class CartController extends Controller
      */
     public function store(Request $request)
     {
+        if(Auth::check()){
+            $this->userId=Auth::user()->id;
+        }
+        else{
+            $this->userId=$request->token;
+        }
         $product=Product::find($request->itemId);
         $imageArray=json_decode($product->haveAttribute->images);
-        Cart::session(1)->add([
+        Cart::session($this->userId)->add([
             'id'=>$product->id,
             'name'=>$product->name,
             'price'=>$product->price,
@@ -44,16 +51,16 @@ class CartController extends Controller
             ],
             'associatedModel'=>'Product'
         ]);
-        if (app('wishlist')->session(1)->has($request->itemId)){
-            app('wishlist')->session(1)->remove($request->itemId);
+        if (app('wishlist')->session($this->userId)->has($request->itemId)){
+            app('wishlist')->session($this->userId)->remove($request->itemId);
         }
 
-        $data=Cart::session(1)->get($request->itemId);
+        $data=Cart::session($this->userId)->get($request->itemId);
         $extraData=[
-            'price'=>Cart::session(1)->get($request->itemId)->getPriceSum(),
-            'subtotal'=>Cart::session(1)->getSubTotal(),
-            'total'=>Cart::session(1)->getTotal(),
-            'itemCount'=>Cart::session(1)->getContent()->count()
+            'price'=>Cart::session($this->userId)->get($request->itemId)->getPriceSum(),
+            'subtotal'=>Cart::session($this->userId)->getSubTotal(),
+            'total'=>Cart::session($this->userId)->getTotal(),
+            'itemCount'=>Cart::session($this->userId)->getContent()->count()
         ];
         // return response()->json(['data'=>$imageArray]);
         return response()->json(['data'=>$data,'extraData'=>$extraData,'status'=>Response::HTTP_NO_CONTENT]);
@@ -67,7 +74,7 @@ class CartController extends Controller
      */
     public function show($id)
     {
-        dd("show");
+    
     }
 
 
@@ -80,17 +87,23 @@ class CartController extends Controller
      */
     public function update(Request $request, $id)
     {
-        Cart::session(1)->update($id,[
+        if(Auth::check()){
+            $this->userId=Auth::user()->id;
+        }
+        else{
+            $this->userId=session()->get('userId');
+        }
+        Cart::session($this->userId)->update($id,[
             'quantity'=>[
                 'relative'=>false,
                 'value'=>$request->quantity
             ]
         ]);
-        $data=Cart::session(1)->get($id);
+        $data=Cart::session($this->userId)->get($id);
         $extraData=[
-            'price'=>Cart::session(1)->get($id)->getPriceSum(),
-            'subtotal'=>Cart::session(1)->getSubTotal(),
-            'total'=>Cart::session(1)->getTotal(),
+            'price'=>Cart::session($this->userId)->get($id)->getPriceSum(),
+            'subtotal'=>Cart::session($this->userId)->getSubTotal(),
+            'total'=>Cart::session($this->userId)->getTotal(),
         ];
         return response()->json(['data'=>$data,'extraData'=>$extraData,'status'=>Response::HTTP_NO_CONTENT]);
     }
