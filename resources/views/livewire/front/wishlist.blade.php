@@ -8,7 +8,7 @@
     $userId=Auth::user()->id;
   }
   else{
-    $userId=session()->get('userId');
+    $userId=session()->get('_token');
   }
   @endphp
     <!-- Cart view section -->

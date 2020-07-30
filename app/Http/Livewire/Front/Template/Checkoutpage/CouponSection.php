@@ -24,7 +24,7 @@ class CouponSection extends Component
             $this->userId=Auth::user()->id;
         }
         else{
-            $this->userId=session()->get('userId');
+            $this->userId=session()->get('_token');
         }
     }
 

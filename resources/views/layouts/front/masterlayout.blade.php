@@ -9,6 +9,7 @@
 @yield('content')
 @include('layouts.front.partial-template.footer')
 @include('layouts.front.partial-template.login-modal')
+
 @endsection
 @push('js')
 <script>
@@ -20,7 +21,11 @@
         let quickCartBtn = document.querySelectorAll('#qkct' + itemId)
         let wishlistBtn = document.querySelectorAll('#wishlist' + itemId);
         let wishIconBtn = document.querySelectorAll('#wishIcon' + itemId);
-        let token="{{session()->get('_token')}}"
+        @if (Auth::check())
+            let token={{Auth::user()->id}}
+        @else
+            let token="{{session()->get('_token')}}"
+        @endif
         let quantity = 1;
         if (document.getElementById('quantity' + itemId) != null) {
             quantity = document.getElementById('quantity' + itemId).value;
@@ -95,7 +100,11 @@
         let wishIconBtn = document.querySelectorAll('#wishIcon' + itemId);
         let cartBtn = document.querySelectorAll('#cart' + itemId);
         let quantity = 1;
-        let token="{{session()->get('_token')}}"
+        @if (Auth::check())
+            let token={{Auth::user()->id}}
+        @else
+            let token="{{session()->get('_token')}}"
+        @endif
         if (document.getElementById('quantity' + itemId) != null) {
             quantity = document.getElementById('quantity' + itemId).value;
         }

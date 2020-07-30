@@ -11,7 +11,7 @@ if(Auth::check()){
   $userId=Auth::user()->id;
 }
 else{
-  $userId=session()->get('userId');
+  $userId=session()->get('_token');
 }
 @endphp
     <figure>
@@ -34,7 +34,7 @@ else{
         data-toggle="tooltip" data-placement="top" title="Add to Wishlist"><span
           class="fa fa-heart-o"></span></a>
       @endif
-      @if (\Cart::session($userId??session()->get('userId'))->get($product->id))
+      @if (\Cart::session($userId??session()->get('_token'))->get($product->id))
       <a id="cart{{$product->id}}" href="{{route('cart')}}" data-toggle="tooltip"
         data-placement="top" title="Added to Cart"><span class="fa fa-shopping-cart"></span></a>
       @else

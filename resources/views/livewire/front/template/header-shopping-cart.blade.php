@@ -4,7 +4,7 @@
     $userId=Auth::user()->id;
   }
   else{
-    $userId=session()->get('userId');
+    $userId=session()->get('_token');
   }
   @endphp
     <a class="aa-cart-link" href="{{route('cart')}}" wire:mouseenter="enableCartBox">

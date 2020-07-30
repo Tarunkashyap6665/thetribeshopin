@@ -17,7 +17,7 @@ class HeaderShoppingCart extends Component
             $this->userId=Auth::user()->id;
         }
         else{
-            $this->userId=session()->get('userId');
+            $this->userId=session()->get('_token');
         }
     }
     public function enableCartBox()

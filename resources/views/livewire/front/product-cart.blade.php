@@ -8,9 +8,8 @@
     $userId=Auth::user()->id;
   }
   else{
-    $userId=session()->get('userId');
+    $userId=session()->get('_token');
   }
-  dd($userId);
   @endphp
   <!-- Cart view section -->
   <section id="cart-view">

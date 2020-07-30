@@ -12,7 +12,7 @@ if(Auth::check()){
   $userId=Auth::user()->id;
 }
 else{
-  $userId=session()->get('userId');
+  $userId=session()->get('_token');
 }
 @endphp
     <div class="col-md-5 col-sm-5 col-xs-12">

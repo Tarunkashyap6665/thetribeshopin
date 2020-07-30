@@ -16,16 +16,17 @@ class Wishlist extends Component
             $this->userId=Auth::user()->id;
         }
         else{
-            $this->userId=session()->get('userId');
+            $this->userId=session()->get('_token');
         }
         $product=Product::find($productId);
+        $imageArray=json_decode($product->haveAttribute->images);
         Cart::session($this->userId)->add([
             'id'=>$product->id,
             'name'=>$product->name,
             'price'=>$product->price,
             'quantity'=>$product->stock,
             'attributes'=>[
-                'image'=>$product->haveImages()->select('image')->first()->image
+                'image'=>$imageArray[0],
             ],
             'associatedModel'=>'Product'
         ]);
@@ -36,6 +37,12 @@ class Wishlist extends Component
 
     public function removeWishlistItem($itemId) 
     {
+        if(Auth::check()){
+            $this->userId=Auth::user()->id;
+        }
+        else{
+            $this->userId=session()->get('_token');
+        }
         // dd(Cart::session($this->userId)->get($itemId));
         app('wishlist')->session($this->userId)->remove($itemId);
     }

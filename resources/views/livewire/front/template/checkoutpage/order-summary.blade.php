@@ -4,7 +4,7 @@
     $userId=Auth::user()->id;
   }
   else{
-    $userId=session()->get('userId');
+    $userId=session()->get('_token');
   }
   @endphp
   <h4>Order Summary</h4>

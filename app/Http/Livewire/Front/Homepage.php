@@ -13,12 +13,12 @@ class Homepage extends Component
     public $userId;
     public function mount()
     {
-        session()->put('userId',random_int(10,100));
+        
         if(Auth::check()){
             $this->userId=Auth::user()->id;
         }
         else{
-            $this->userId=session()->get('userId');
+            $this->userId=session()->get('_token');
             
         }
         $taxCondition=new CartCondition([

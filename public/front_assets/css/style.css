@@ -1164,6 +1164,11 @@ img {
   -webkit-transform: scale(0);
   transform: scale(0);
 }
+/* @media(max-width:600px){
+  .aa-add-card-btn{
+    display: inline;
+  }
+} */
 .aa-product-catg li figure .aa-add-card-btn span {
   margin-right: 5px;
 }
@@ -1730,6 +1735,11 @@ img {
   margin: 20px auto 0;
   position: relative;
   width: 450px;
+}
+@media(max-width:600px){
+  #aa-subscribe .aa-subscribe-area .aa-subscribe-form {
+    width: 100%;
+  }
 }
 #aa-subscribe .aa-subscribe-area .aa-subscribe-form input[type="email"] {
   border: 1px solid #ccc;

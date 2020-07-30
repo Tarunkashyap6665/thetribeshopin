@@ -91,7 +91,7 @@ class CartController extends Controller
             $this->userId=Auth::user()->id;
         }
         else{
-            $this->userId=session()->get('userId');
+            $this->userId=session()->get('_token');
         }
         Cart::session($this->userId)->update($id,[
             'quantity'=>[

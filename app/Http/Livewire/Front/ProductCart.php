@@ -24,7 +24,7 @@ class ProductCart extends Component
             $this->userId=Auth::user()->id;
         }
         else{
-            $this->userId=session()->get('userId');
+            $this->userId=session()->get('_token');
         }
         if (Session::has('coupon')) {
             Cart::session($this->userId)->removecartCondition(Session::get('coupon'));
@@ -71,19 +71,32 @@ class ProductCart extends Component
      */
     public function removeCartItem($itemId) 
     {
+        if(Auth::check()){
+            $this->userId=Auth::user()->id;
+        }
+        else{
+            $this->userId=session()->get('_token');
+        }
         Cart::session($this->userId)->remove($itemId);
     }
 
    public function addToWishlist($itemId)
    {
+    if(Auth::check()){
+        $this->userId=Auth::user()->id;
+    }
+    else{
+        $this->userId=session()->get('_token');
+    }
     $product=Product::find($itemId);
+    $imageArray=json_decode($product->haveAttribute->images);
     app('wishlist')->session($this->userId)->add([
         'id'=>$product->id,
         'name'=>$product->name,
         'price'=>$product->price,
         'quantity'=>$product->stock,
         'attributes'=>[
-            'image'=>$product->haveImages()->select('image')->first()->image
+            'image'=>$imageArray[0],
         ],
         'associatedModel'=>$product
     ]);

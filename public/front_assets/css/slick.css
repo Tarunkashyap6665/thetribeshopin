@@ -90,6 +90,12 @@
 {
     display: block;
 }
+@media(max-width:600px){
+    .slick-slide img
+{
+    display: inline-block;
+}
+}
 .slick-slide.slick-loading img
 {
     display: none;

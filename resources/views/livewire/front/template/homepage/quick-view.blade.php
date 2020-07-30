@@ -5,7 +5,7 @@
     $userId=Auth::user()->id;
   }
   else{
-    $userId=session()->get('userId');
+    $userId=session()->get('_token');
   }
   @endphp
   <div class="modal fade {{$active==true?'in':''}}" id="quick-view-modal" tabindex="-1" role="dialog"
