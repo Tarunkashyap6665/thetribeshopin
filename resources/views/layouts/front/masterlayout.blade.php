@@ -30,7 +30,7 @@
         if (document.getElementById('quantity' + itemId) != null) {
             quantity = document.getElementById('quantity' + itemId).value;
         }
-        let uri = `http://127.0.0.1:8000/api/cart`;
+        let uri = `${location.origin}/api/cart`;
         data = {
             itemId: itemId,
             quantity: parseInt(quantity),
@@ -108,7 +108,7 @@
         if (document.getElementById('quantity' + itemId) != null) {
             quantity = document.getElementById('quantity' + itemId).value;
         }
-        let uri = `http://127.0.0.1:8000/api/wishlist`;
+        let uri = `${location.origin}/api/wishlist`;
         data = {
             itemId: itemId,
             quantity: quantity,

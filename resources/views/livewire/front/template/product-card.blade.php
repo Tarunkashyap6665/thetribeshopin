@@ -16,8 +16,8 @@ else{
 @endphp
     <figure>
       <a class="aa-product-img" href="{{route('productdetails',['product'=>$product->id])}}"><img
-          src={{$imageIntervention::make($imagePath)->resize(250,300)->encode('data-url')}} alt="polo shirt img"></a>
-      <a class="aa-add-card-btn" href="{{route('checkout',['product'=>$product->id])}}"><span
+          src={{$imageIntervention::make($imagePath)->resize(250,300)->encode('data-url')}} style="width:100%;" alt="polo shirt img"></a>
+      <a class="aa-add-card-btn" href="{{route('checkout',['product'=>$product->id,'quantity'=>1])}}"><span
           class="fa fa-cart-arrow-down"></span>Buy Now</a>
       <figcaption>
         <h4 class="aa-product-title"><a href="#">{{$product->name}}</a></h4>

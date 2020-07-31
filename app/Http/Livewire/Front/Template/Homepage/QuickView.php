@@ -11,6 +11,7 @@ class QuickView extends Component
 {
     public $product;
     public $category;
+    public $quantity=1;
     public $active=false;
     protected $listeners=['quickView'];
 
@@ -26,6 +27,11 @@ class QuickView extends Component
 
     public function hydrate(){
         $this->active=true;
+    }
+
+    public function hideModel()
+    {
+        $this->active=false;
     }
 
     public function render()

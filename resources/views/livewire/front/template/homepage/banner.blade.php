@@ -1,6 +1,7 @@
 <div>
   @inject('imageIntervention', 'Intervention\Image\ImageManagerStatic')
     <!-- banner section -->
+  @if (App\Banner::count())
   <section id="aa-banner">
     <div class="container">
       <div class="row">
@@ -21,5 +22,6 @@
         </div>
       </div>
     </div>
-  </section>
+  </section>    
+  @endif
 </div>

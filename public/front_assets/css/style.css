@@ -1020,7 +1020,9 @@ img {
 }
 #aa-product .aa-product-area .aa-product-inner .aa-product-catg {
   float: left;
+  width:100%;
 }
+
 #aa-product .aa-product-area .aa-product-inner #men {
   text-align: center;
   padding-bottom: 35px;
@@ -1100,14 +1102,14 @@ img {
   background-color: inherit;
 }
 .aa-product-catg {
-  margin-left: -54px;
+  /* margin-left: -54px; */
 }
 .aa-product-catg li {
   display: block;
   float: left;
   height: 380px;
   text-align: center;
-  margin: 0 0 20px 55px;
+  margin: 0 2%;
   width: 20.5%;
   position: relative;
   overflow: hidden;
@@ -1223,6 +1225,12 @@ img {
   padding: 5px 10px;
   color: #fff;
   font-size: 15px;
+}
+
+@media(max-width:600px){
+  .aa-product-catg li .aa-badge{
+    left: 67px;
+  }
 }
 .aa-product-catg li .aa-sale {
   background-color: #008000;
@@ -3456,6 +3464,18 @@ img {
 }
 #aa-footer .aa-footer-bottom .aa-footer-bottom-area .aa-footer-payment span:hover {
   color: #fff;
+}
+
+@media(min-width:600px){
+	.tab-pane .aa-browse-btn{
+		margin:3% 41%;
+	}
+}
+
+@media(max-width:600px){
+	.tab-pane .aa-browse-btn{
+		margin:3% 24%;
+	}
 }
 
 /*==================

@@ -10,8 +10,9 @@ class ProductStore extends Component
 {
     public $category;
 
-    public function mount($category=0)
+    public function mount(Category $category)
     {
+        // dd($category);
         $this->category=$category;
     }
     public function render()

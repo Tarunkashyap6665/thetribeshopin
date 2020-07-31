@@ -31,7 +31,7 @@ class ProductReview extends Component
     }
     public function productReview(){
         $this->review['product_id']=$this->product->id;
-        $this->review['user_id']=Auth::user()->id??1;
+        $this->review['user_id']=Auth::user()->id;
         $this->validate([
             'review.message'=>'required|max:200',
             ]);
@@ -41,7 +41,7 @@ class ProductReview extends Component
     }
     
     public function rating($rating){
-        $this->review['rating']=$rating;
+        $this->review['rating']=$rating; 
     }
     
     public function render()

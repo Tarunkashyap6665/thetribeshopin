@@ -10,7 +10,7 @@ class Banner extends Component
 {
     public $banner;
     public function mount(){
-        if (Category::count()) {
+        if (Category::count() && AppBanner::count()) {
             $this->banner=AppBanner::all()->random(1)->first();
         }
     }

@@ -15,9 +15,19 @@ class ProductCategory extends Component
         'latest'=>''
     ];
     public function mount(){
-        if(Product::count()==7){
-            $this->diffProducts['popular']=Product::all()->where('popular',true)->random(7);
-            $this->diffProducts['featured']=Product::all()->where('featured',true)->random(7);
+        if(Product::count()>=7){
+            if(Product::all()->where('popular',true)->count()>=7){
+                $this->diffProducts['popular']=Product::all()->where('popular',true)->random(7);
+            }
+            else{
+                $this->diffProducts['popular']=Product::all()->where('popular',true);
+            }
+            if(Product::all()->where('featured',true)->count()>=7){
+                $this->diffProducts['featured']=Product::all()->where('featured',true)->random(7);
+            }
+            else{
+                $this->diffProducts['featured']=Product::all()->where('featured',true);
+            }
             $this->diffProducts['latest']=Product::select('*')->orderBy('created_at','desc')->take(7)->get();
         }else{
             

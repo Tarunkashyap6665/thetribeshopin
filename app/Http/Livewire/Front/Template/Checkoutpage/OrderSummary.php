@@ -9,12 +9,16 @@ class OrderSummary extends Component
     public $key;
     public $coupon;
     public $product;
+    public $quantity;
+    public $grandTotal;
 
     protected $listeners=['couponApplied','removedCoupon'];
 
-    public function mount($product)
+    public function mount($product,$quantity,$grandTotal)
     {
         $this->product=$product;
+        $this->quantity=$quantity;
+        $this->grandTotal=$grandTotal;
     }
     public function couponApplied($key,$coupon)
     {

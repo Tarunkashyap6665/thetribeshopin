@@ -17,10 +17,14 @@ class CreateProductsTable extends Migration
             $table->id();
             $table->foreignId('category_id');
             $table->string('name');
+            $table->string('slug')->nullable();
             $table->longText('description');
             $table->integer('stock');
             $table->integer('price');
-            $table->foreign('category_id')->references('id')->on('categories');
+            $table->string('product_code');
+            $table->boolean('featured');
+            $table->boolean('popular');
+            $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
             $table->timestamps();
         });
     }

@@ -10,6 +10,7 @@ use Livewire\Component;
 class ProductSpec extends Component
 {
     public $product;
+    public $quantity=1;
 
     public function mount($product)
     {

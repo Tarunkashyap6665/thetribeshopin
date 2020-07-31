@@ -18,7 +18,7 @@
                <span data-seq>Save Up to 75% Off</span>                
                 <h2 data-seq>{{$category->name}} Collection</h2>                
               <p data-seq>{!!$category->description!!}</p>
-                <a data-seq href={{route("productstore",['category'=>$category->id])}} class="aa-shop-now-btn aa-secondary-btn">SHOP NOW</a>
+                <a data-seq href={{route("productstore",['category'=>$category->slug])}} class="aa-shop-now-btn aa-secondary-btn">SHOP NOW</a>
               </div>
             </li>    
             @endforeach

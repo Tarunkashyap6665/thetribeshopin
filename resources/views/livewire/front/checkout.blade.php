@@ -4,6 +4,22 @@
 <livewire:front.template.category-banner/>
 <!-- / catg header banner section -->
     <!-- Cart view section -->
+    @php
+    if(Auth::check()){
+      $userId=Auth::user()->id;
+    }
+    else{
+    $userId=session()->get('_token');
+    }
+
+    if ($quantity) {
+      $grandTotal=$product->price*$quantity*1.18;
+    } 
+    else {
+      $grandTotal=\Cart::session($userId)->getTotal();
+      }
+        
+    @endphp
  <section id="checkout">
     <div class="container">
       <div class="row">
@@ -23,19 +39,19 @@
                      @endguest
                      
                      <!-- Shipping Address -->
-                     <livewire:front.template.checkoutpage.shipping-details/>
+                     <livewire:front.template.checkoutpage.shipping-details :product="$product" :quantity="$quantity" :grandTotal="$grandTotal"/>
                      
                     </div>
                   </div>
                 </div>
                 <div class="col-md-4">
                   <div class="checkout-right">
-                    <livewire:front.template.checkoutpage.order-summary :product="$product"/>
+                    <livewire:front.template.checkoutpage.order-summary :product="$product" :quantity="$quantity" :grandTotal="$grandTotal"/>
                    
                    <h4>Payment Method</h4>
                    <div class="aa-payment-method">                    
-                     <label for="cashdelivery"><input type="radio" id="cashdelivery" name="optionsRadios" value="COD"> Cash on Delivery </label>
-                     <label for="Paytm"><input type="radio" id="Paytm" name="optionsRadios" value="paytm" checked> Via Paytm </label>    
+                     <label for="cashdelivery"><input type="radio" id="cashdelivery" name="paymentMethod" value="COD"> Cash on Delivery </label>
+                     <label for="Paytm"><input type="radio" id="Paytm" name="paymentMethod" value="paytm" checked> Via Paytm </label>    
                      <input type="submit" value="Place Order" class="aa-browse-btn">                
                    </div>
                  </div>

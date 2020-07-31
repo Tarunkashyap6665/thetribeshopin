@@ -19,8 +19,8 @@ class CreateProductReviewsTable extends Migration
             $table->foreignId('user_id');
             $table->string('message');
             $table->integer('rating');
-            $table->foreign('product_id')->references('id')->on('products');
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

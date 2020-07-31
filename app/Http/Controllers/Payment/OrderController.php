@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Payment;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Anand\LaravelPaytmWallet\Facades\PaytmWallet;
+use App\Order;
+use App\OrderProduct;
+use App\Product;
 
 class OrderController extends Controller
 {
@@ -13,15 +16,45 @@ class OrderController extends Controller
      *
      * @return Response
      */
-    public function order()
+    public function order(Request $request)
     {
+      // dd($request->productId);
+      $order=Order::create([
+        'user_id'=>$request->userId,
+        'user_email'=>"$request->email",
+        'name'=>"$request->name",
+        'address'=>"$request->address",
+        'city'=>"$request->city",
+        'state'=>"$request->state",
+        'pincode'=>$request->pincode,
+        'shipping_charges'=>$request->shippingCharges,
+        'country'=>"$request->country",
+        'mobile'=>$request->mobile,
+        'order_status'=>$request->orderStatus,
+        'payment_method'=>"$request->paymentMethod",
+        'grand_total'=>$request->grandTotal,
+
+      ]);
+        foreach ($request->productId as $key=>$productId) {
+            $product=Product::find($productId);
+            $orderProduct=new OrderProduct;
+            $orderProduct->order_id=$order->id;
+            $orderProduct->user_id=$request->userId;
+            $orderProduct->product_id=$product->id;
+            $orderProduct->product_code=$product->product_code??"shdl";
+            $orderProduct->product_size=$product->haveAttribute->size;
+            $orderProduct->product_color=$product->haveAttribute->color;
+            $orderProduct->product_price=$product->price;
+            $orderProduct->product_qty=$request->productQty[$key];
+            $orderProduct->save();
+        }
         $payment = PaytmWallet::with('receive');
         $payment->prepare([
-          'order' =>123321,
-          'user' => 3,
-          'mobile_number' => 7974724069,
-          'email' => 'kashyapashish6665@gmail.com',
-          'amount' => 200,
+          'order' =>$order->id,
+          'user' => $order->user_id,
+          'mobile_number' => $order->mobile,
+          'email' => $order->user_email,
+          'amount' => $order->grand_total,
           'callback_url' =>env('APP_URL').'/payment/status'
         ]);
         return $payment->receive();

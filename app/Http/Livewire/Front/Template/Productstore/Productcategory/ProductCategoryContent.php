@@ -13,12 +13,14 @@ class ProductCategoryContent extends Component
     protected $products;
     protected $listeners=["filter"];
     
-    public function mount($categoryId){
+    public function mount($category){
         // $category=Category::all()->where('parent_id',$category->id);
-        // dd($category); 
-        if ($categoryId){
-            $this->products=Product::where('category_id',$categoryId)->paginate(6);
+        // dd($category->id); 
+        if ($category->id){
+            // dd("fdfdfd");
+            $this->products=Product::where('category_id',$category->id)->paginate(6);
         } else {
+            // dd("else");
             $this->products=Product::paginate(6);
         }
         

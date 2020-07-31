@@ -17,10 +17,11 @@ class CreateCategoriesTable extends Migration
             $table->id();
             $table->foreignId('parent_id')->nullable();
             $table->string('name');
+            $table->string('slug')->nullable();
             $table->longText('description');
             $table->string('image');
             $table->boolean('status')->nullable();
-            $table->foreign('parent_id')->references('id')->on('categories');
+            $table->foreign('parent_id')->references('id')->on('categories')->onDelete('cascade');
             $table->timestamps();
         });
     }

@@ -16,10 +16,11 @@ class CreateProductAttributesTable extends Migration
         Schema::create('product_attributes', function (Blueprint $table) {
             $table->id();
             $table->foreignId('product_id');
+            $table->string('sku')->nullable();
             $table->string('size');
             $table->string('color');
             $table->string('images');
-            $table->foreign('product_id')->references('id')->on('products');
+            $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
             $table->timestamps();
         });
     }

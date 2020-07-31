@@ -7,7 +7,7 @@
               <div class="media">
                 <div class="media-left">
                   <a href="#">
-                    <img class="media-object" src={{asset("front_assets/img/testimonial-img-3.jpg")}} alt="girl image">
+                    <img class="media-object" src={{asset('storage/'.$productReview->user->avatar)}} alt="girl image">
                   </a>
                 </div>
                 <div class="media-body">
@@ -52,7 +52,13 @@
                </div>
                @enderror
              </div>
+             @if (Auth::check())
+                 
              <button type="submit" class="btn btn-default aa-review-submit">Submit</button>
+             @else
+             <button type="submit" class="btn btn-default aa-review-submit" disabled>Submit</button>
+                 
+             @endif
           </form>
         </div>
        </div>

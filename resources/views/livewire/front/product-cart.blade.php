@@ -29,6 +29,7 @@
                         <th>Quantity</th>
                         <th>Total</th>
                         <th>Remove / Add Wishlist</th>
+                        <th>Buy Now</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -72,6 +73,7 @@
                             <a class="aa-cart-title" id="wishlist{{$cart->id}}" wire:click="addToWishlist({{$cart->id}})" style="color: rgb(15, 121, 41); cursor:pointer;">Add to wishlist</a>
                             </p>
                         </td>
+                        <td><a href="{{route('checkout',['product'=>$cart->id])}}" class="aa-add-to-cart-btn">Add To Cart</a></td>
                       </tr>
                       @empty
                       <tr>
@@ -82,7 +84,7 @@
                       @endforelse
                       @if (!\Cart::session($userId)->getContent()->isEmpty())
                       <tr>
-                        <td colspan="6" class="aa-cart-view-bottom">
+                        <td colspan="7" class="aa-cart-view-bottom">
                           <div class="aa-cart-coupon">
                               <input class="aa-coupon-code" wire:model.lazy="coupon" type="text" placeholder="Coupon">
                               <button class="aa-cart-view-btn" wire:click="applyCoupon">Apply Coupon</button>
@@ -164,14 +166,20 @@
 @push('js')
 <script>
   function updateCart(id) {
-    let itemId=id.substring(8);
+    let itemId=parseInt(id.substring(8));
          let value=document.getElementById(id).value;
          let price=document.getElementById('price'+itemId);
          let total=document.getElementById('total');
          let subtotal=document.getElementById('subtotal');
-         let uri=`http://127.0.0.1:8000/api/cart/${itemId}`;
+         @if (Auth::check())
+            let token={{Auth::user()->id}}
+        @else
+            let token="{{session()->get('_token')}}"
+        @endif
+         let uri=`${location.origin}/api/cart/${itemId}`;
          data={
-           quantity:value
+           quantity:parseInt(value),
+           token:token,
          }
          params={
            method:'PUT',

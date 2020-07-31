@@ -39,7 +39,9 @@
                       @endforeach
 
                     </ul>
-                    <a class="aa-browse-btn"  href="{{route('productstore')}}">Browse all Product <span class="fa fa-long-arrow-right"></span></a>
+                    <a class="aa-browse-btn" style="margin-left: 42%;margin-bottom: 3%;"
+                      href="{{route('productstore')}}">Browse all Product <span
+                        class="fa fa-long-arrow-right"></span></a>
                   </div>
                   <!-- / {{$category->name}} product category -->
                   @endif

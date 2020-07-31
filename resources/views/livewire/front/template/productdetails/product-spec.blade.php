@@ -69,13 +69,14 @@ else{
                 <a href="#" class="aa-color-white"></a>
             </div>
             <div class="aa-prod-quantity">
-               <input type="number" name="quantity" id="quantity{{$product->id}}" value="1" style="width: 50px; padding-left:5px;">
+               <input type="number" name="quantity" wire:model.lazy="quantity" id="quantity{{$product->id}}" value="1" style="width: 50px; padding-left:5px;">
                 </form>
                 <p class="aa-prod-category">
                     Category: <a href="#">{{$product->category->name}}</a>
                 </p>
             </div>
             <div class="aa-prod-view-bottom">
+                <a class="aa-add-to-cart-btn" href="{{route('checkout',['product'=>$product->id,'quantity'=>$quantity])}}">Buy Now</a>
                 @if (\Cart::session($userId)->get($product->id))
                 <a class="aa-add-to-cart-btn" id="cart{{$product->id}}" href="{{route('cart')}}">Added To Cart</a>
                 @else
@@ -87,7 +88,6 @@ else{
                 @else
                 <a class="aa-add-to-cart-btn" id="wishlist{{$product->id}}" onclick="addToWishlist(this.id)" style="cursor: pointer;">Wishlist</a>
                 @endif
-                <a class="aa-add-to-cart-btn" href="#">Compare</a>
             </div>
         </div>
     </div>

@@ -18,7 +18,7 @@
                     <img src={{$imageIntervention::make($imagePath)->resize(450,450)->encode('data-url')}} alt="img">                    
                     <div class="aa-prom-content">
                       <span>75% Off</span>
-                    <h4><a href="{{route('productstore',['category'=>$categoryLeft->id])}}">For {{$categoryLeft->name}}</a></h4>                      
+                    <h4><a href="{{route('productstore',['category'=>$categoryLeft->slug])}}">For {{$categoryLeft->name}}</a></h4>                      
                     </div>
                   </div>
                 </div>
@@ -35,7 +35,7 @@
                       <img src={{$imageIntervention::make($imagePath)->resize(300,220)->encode('data-url')}} alt="img">                      
                       <div class="aa-prom-content">
                         <span>Exclusive Item</span>
-                        <h4><a href="{{route('productstore',['category'=>$category->id])}}">For {{$category->name}}</a></h4>                        
+                        <h4><a href="{{route('productstore',['category'=>$category->slug])}}">For {{$category->name}}</a></h4>                        
                       </div>
                     </div>
                   </div>

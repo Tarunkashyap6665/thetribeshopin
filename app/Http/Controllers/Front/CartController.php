@@ -87,11 +87,12 @@ class CartController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $id=$id+0;
         if(Auth::check()){
             $this->userId=Auth::user()->id;
         }
         else{
-            $this->userId=session()->get('_token');
+            $this->userId=$request->token;
         }
         Cart::session($this->userId)->update($id,[
             'quantity'=>[
@@ -106,6 +107,7 @@ class CartController extends Controller
             'total'=>Cart::session($this->userId)->getTotal(),
         ];
         return response()->json(['data'=>$data,'extraData'=>$extraData,'status'=>Response::HTTP_NO_CONTENT]);
+        // return response()->json(['data'=>$request->all(),'data1'=>$id]);
     }
 
     /**

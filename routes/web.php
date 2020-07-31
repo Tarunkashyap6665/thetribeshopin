@@ -28,7 +28,7 @@ Route::get('/product/{name}',function($name){
 //     ->layout('layouts.front.masterlayout')->name('forgetForm');
 // Site Route
 Route::livewire('/', 'front.homepage')->layout('layouts.front.masterlayout')->name('home');
-Route::livewire('/product-store/{category?}', 'front.product-store')
+Route::livewire('/product-store/{category:slug?}', 'front.product-store')
     ->layout('layouts.front.masterlayout')->name('productstore');
 Route::livewire('/product-details/{product}', 'front.product-details')
     ->layout('layouts.front.masterlayout')->name('productdetails');
@@ -39,7 +39,7 @@ Route::livewire('/forget', 'front.auth.forget')
 Route::livewire('/cart', 'front.product-cart')
     ->layout('layouts.front.masterlayout')->name('cart');
 Route::livewire('/checkout/{product?}', 'front.checkout')
-    ->layout('layouts.front.masterlayout')->name('checkout');
+    ->layout('layouts.front.masterlayout')->name('checkout')->middleware('auth');
 Route::livewire('/search', 'front.search-page')
     ->layout('layouts.front.masterlayout')->name('search');
 Route::livewire('/wishlist', 'front.wishlist')
@@ -54,7 +54,7 @@ Route::livewire('/search', 'front.search-page')
 
 // Payment Route
 Route::post('/payment/status', 'Payment\OrderController@paymentCallback');
-Route::get('/payment', 'Payment\OrderController@order')->name('payment');
+Route::post('/payment', 'Payment\OrderController@order')->name('payment')->middleware('auth');
 
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();

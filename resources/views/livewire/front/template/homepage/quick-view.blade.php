@@ -64,7 +64,7 @@
                   <a href="#">XL</a>
                 </div>
                 <div class="aa-prod-quantity">
-                  <input type="number" name="quantity" id="quantity{{$product->id}}" value="1"
+                  <input type="number" name="quantity" wire:model.lazy="quantity" id="quantity{{$product->id}}" value="1"
                     style="width: 50px; padding-left:5px;">
                   </form>
                   <p class="aa-prod-category">
@@ -72,6 +72,7 @@
                   </p>
                 </div>
                 <div class="aa-prod-view-bottom">
+                  <a class="aa-add-to-cart-btn" href="{{route('checkout',['product'=>$product->id,'quantity'=>$quantity])}}">Buy Now</a>
                   @if (\Cart::session($userId)->get($product->id))
                   <a class="aa-add-to-cart-btn" id="qkct{{$product->id}}" href="{{route('cart')}}">Added To Cart</a>
                   @else
@@ -79,7 +80,7 @@
                     style="cursor: pointer;">Add To Cart</a>
                   @endif
                   <a href="{{route('productdetails',['product'=>$product->id])}}" class="aa-add-to-cart-btn">View
-                    Details</a>
+                    Details</a>  
                 </div>
               </div>
             </div>

@@ -20,14 +20,14 @@
       <!--For ONe Product-->
       <tbody>
         <tr>
-          <td>{{$product->name}} <strong> x 1</strong></td>
+          <td>{{$product->name}} <strong> x {{$quantity}}</strong></td>
           <td>${{$product->price}}</td>
         </tr>
       </tbody>
       <tfoot>
         <tr>
           <th>Subtotal</th>
-          <td></td>
+          <td>${{$product->price*$quantity}}</td>
         </tr>
         @if ($key=="success")
         <tr>
@@ -41,11 +41,11 @@
         @endif
         <tr>
           <th>GST</th>
-          <td></td>
+          <td>18%</td>
         </tr>
         <tr>
           <th>Total</th>
-          <td></td>
+          <td>${{$grandTotal}}</td>
         </tr>
       </tfoot>
       @elseif(!\Cart::session($userId)->getContent()->isEmpty())
