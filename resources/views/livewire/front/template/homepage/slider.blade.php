@@ -1,4 +1,5 @@
 <div>
+  @inject('imageIntervention', 'Intervention\Image\ImageManagerStatic')
     <!-- Start slider -->
   <section id="aa-slider">
     <div class="aa-slider-area">
@@ -12,7 +13,7 @@
                 @php
                     $imagePath='storage/'.$category->image;
                 @endphp
-                <img data-seq src={{asset($imagePath)}} alt="Men slide img" />
+                <img data-seq src={{$imageIntervention::make($imagePath)->resize(1920,700)->encode('data-url')}} alt="Men slide img" />
               </div>
               <div class="seq-title">
                <span data-seq>Save Up to 75% Off</span>                

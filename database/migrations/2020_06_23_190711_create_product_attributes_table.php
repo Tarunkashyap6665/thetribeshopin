@@ -17,6 +17,7 @@ class CreateProductAttributesTable extends Migration
             $table->id();
             $table->foreignId('product_id');
             $table->string('sku')->nullable();
+            $table->longText('details');
             $table->string('size');
             $table->string('color');
             $table->string('images');
