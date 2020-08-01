@@ -21,8 +21,7 @@ else{
           class="fa fa-cart-arrow-down"></span>Buy Now</a>
       <figcaption>
         <h4 class="aa-product-title"><a href="#">{{$product->name}}</a></h4>
-        <span class="aa-product-price">${{$product->price*.8}}</span><span
-          class="aa-product-price"><del>${{$product->price}}</del></span>
+        <span class="aa-product-price">Rs. {{$product->price}}</span>
       </figcaption>
     </figure>
     <div class="aa-product-hvr-content">

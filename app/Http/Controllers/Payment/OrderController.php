@@ -18,7 +18,17 @@ class OrderController extends Controller
      */
     public function order(Request $request)
     {
-      // dd($request->productId);
+      $request->validate([
+        'name'=>'required',
+        'email'=>'email:rfc,dns|required',
+        'mobile'=>'required|digits:10',
+        'address'=>'required|alpha',
+        'country'=>'required',
+        'pincode'=>'required',
+        'state'=>'required',
+        'city'=>'required'
+      ]
+      );
       $order=Order::create([
         'user_id'=>$request->userId,
         'user_email'=>"$request->email",
@@ -74,10 +84,13 @@ class OrderController extends Controller
         
         if($transaction->isSuccessful()){
           //Transaction Successful
+          return view('front.payment.success');
         }else if($transaction->isFailed()){
           //Transaction Failed
+          return view('front.payment.failed');
         }else if($transaction->isOpen()){
           //Transaction Open/Processing
+          return view('front.payment.processing');
         }
         $transaction->getResponseMessage(); //Get Response Message If Available
         //get important parameters via public methods

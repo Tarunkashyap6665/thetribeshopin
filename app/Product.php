@@ -14,7 +14,7 @@ class Product extends Model
      *
      * @return string
      */
-    public function searchableAs()
+    public function searchableAs() 
     {
         return 'name';
     }

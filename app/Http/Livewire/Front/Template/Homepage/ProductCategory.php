@@ -38,6 +38,8 @@ class ProductCategory extends Component
         $this->active='popular';
 
     }
+
+
     public function render()
     {
         return view('livewire.front.template.homepage.product-category');

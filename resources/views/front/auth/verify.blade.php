@@ -13,7 +13,7 @@
                   <tr>
                     <td colspan="6" style="padding-top: 120px;padding-bottom: 120px;">
                         <div class="card">
-                            <div class="card-header">{{ __('Verify Your Email Address') }}</div>
+                            <h2>{{ __('Verify Your Email Address') }}</h2>
             
                             <div class="card-body">
                                 @if (session('resent'))
@@ -41,11 +41,4 @@
       </div>
     </div>
   </section>
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            
-        </div>
-    </div>
-</div>
 @endsection

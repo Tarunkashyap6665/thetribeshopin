@@ -59,13 +59,13 @@
                           <a class="aa-cart-title" href="#">{{$cart->name}}</a>
                         </td>
                         <td>
-                          ${{$cart->price}}
+                          Rs. {{$cart->price}}
                         </td>
                         <td>
                           <input class="aa-cart-quantity" id="quantity{{$cart->id}}" onchange="updateCart(this.id)"
                             value="{{$cart->quantity}}" type="number">
                         </td>
-                        <td id="price{{$cart->id}}">${{$cart->getPriceSum()}}</td>
+                        <td id="price{{$cart->id}}">Rs. {{$cart->getPriceSum()}}</td>
                         <td>
                           <p><a class="remove" style="cursor: pointer;"
                               wire:click="removeCartItem({{$cart->id}})">Remove cart</a></p>
@@ -127,7 +127,7 @@
                     <tbody>
                       <tr>
                         <th>Subtotal</th>
-                        <td id="subtotal">${{\Cart::session($userId)->getSubTotal()}}</td>
+                        <td id="subtotal">Rs. {{\Cart::session($userId)->getSubTotal()}}</td>
                       </tr>
                       <tr>
                         <th>GST</th>
@@ -146,7 +146,7 @@
                       
                       <tr>
                         <th>Total</th>
-                        <td id="total">${{\Cart::session($userId)->getTotal()}}</td>
+                        <td id="total">Rs. {{\Cart::session($userId)->getTotal()}}</td>
                       </tr>
                     </tbody>
                   </table>

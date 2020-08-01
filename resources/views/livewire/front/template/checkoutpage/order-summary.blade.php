@@ -21,13 +21,13 @@
       <tbody>
         <tr>
           <td>{{$product->name}} <strong> x {{$quantity}}</strong></td>
-          <td>${{$product->price}}</td>
+          <td>Rs. {{$product->price}}</td>
         </tr>
       </tbody>
       <tfoot>
         <tr>
           <th>Subtotal</th>
-          <td>${{$product->price*$quantity}}</td>
+          <td>Rs. {{$product->price*$quantity}}</td>
         </tr>
         @if ($key=="success")
         <tr>
@@ -45,7 +45,7 @@
         </tr>
         <tr>
           <th>Total</th>
-          <td>${{$grandTotal}}</td>
+          <td>Rs. {{$grandTotal}}</td>
         </tr>
       </tfoot>
       @elseif(!\Cart::session($userId)->getContent()->isEmpty())
@@ -54,7 +54,7 @@
         @foreach (\Cart::session($userId)->getContent() as $cart)
         <tr>
           <td>{{$cart->name}}<strong> x {{$cart->quantity}}</strong></td>
-          <td>{{$cart->price}}</td>
+          <td>Rs. {{$cart->price}}</td>
         </tr>
         @endforeach
       </tbody>
@@ -80,7 +80,7 @@
         </tr>
         <tr>
           <th>Total</th>
-          <td id="total">${{\Cart::session($userId)->getTotal()}}</td>
+          <td id="total">Rs. {{\Cart::session($userId)->getTotal()}}</td>
         </tr>
       </tfoot>
       @endif

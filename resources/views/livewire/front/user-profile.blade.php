@@ -1,5 +1,5 @@
 <div>
-    <div class="container bootstrap snippet " style="margin-top:30px;margin-bottom:30px;">
+    <div class="container bootstrap snippet  " style="margin:30px 30px;">
         <div class="row">
             <div class="col-sm-10">
                 <h1>{{$user->name}}</h1>

@@ -9,6 +9,7 @@
                      <div class="aa-myaccount-login" style="padding: 15px 5px;">
                      <h4>Login</h4>
                       <form action="{{route('login')}}" method="POST" class="aa-login-form">
+                        @method('POST')
                         @csrf
                        <label for="">Email<span>*</span></label>
                         <input type="text" placeholder="Username or email" name="email">

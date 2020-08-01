@@ -29,6 +29,9 @@
     <link href={{asset("front_assets/css/sequence-theme.modern-slide-in.css")}} rel="stylesheet" media="all">
 
     <!-- Main style sheet -->
+     <!-- Main style sheet -->
+     {{-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous"> --}}
+     <link rel="stylesheet" href="{{asset('front_assets/css/owl.carousel.css')}}" type="text/css">
     <link href={{asset("front_assets/css/style.css")}} rel="stylesheet">
 
     <!-- Google Font -->
@@ -57,6 +60,7 @@
     <!-- Livewire js -->
     <livewire:scripts />
     <!-- jQuery library -->
+    {{-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script> --}}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src={{asset("front_assets/js/bootstrap.js")}}></script>
@@ -77,6 +81,32 @@
     <!-- Custom js -->
     <script src={{asset("front_assets/js/custom.js")}}></script>
     @stack('js')
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    {{-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script> --}}
+        <script src="{{asset('front_assets/js/owl.carousel.min.js')}}"></script> 
+    <script>
+         
+        $('.welcome-carousel').owlCarousel({
+    loop: true,
+    margin:0,
+    nav: true,
+    dots:true,
+    items: 1,
+    navText: ['<button class="btn btn-primary btn-lg pl-4 pr-4 text-white">Prev</button>', '<button class="btn btn-lg btn-primary pl-4 pr-4 text-white">Next</button>'],
+    smartSpeed: 1000,
+    autoplayHoverPause: true,
+    mouseDrag: false,
+    autoplay: false,
+ 
+  });
+ 
+setTimeout(function(){
+if(localStorage.getItem('popWelc')!='shown'){
+  $('#activate-welcome').click();
+    localStorage.setItem('popWelc','shown');
+}
+},1000);
+</script>  
 
 </body>
 

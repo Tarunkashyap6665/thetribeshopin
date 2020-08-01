@@ -9,7 +9,7 @@
                      <div class="aa-myaccount-register" style="padding: 15px 5px;">                 
                       <h4>Register</h4>
                       <form action="" class="aa-login-form">
-                         <label for="">Username or Email address<span>*</span></label>
+                         <label for="">Email<span>*</span></label>
                          <input type="text" placeholder="Username or email">
                          <label for="">Password<span>*</span></label>
                          <input type="password" placeholder="Password">

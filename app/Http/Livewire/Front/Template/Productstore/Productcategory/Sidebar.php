@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Front\Template\Productstore\Productcategory;
 
 use App\Category;
 use App\ProductAttribute;
+use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Livewire\Component;
 
@@ -18,6 +19,7 @@ class Sidebar extends Component
         Category::all()->each(function($category){
             if (!empty($category->haveProducts->first())) {
                 array_push($this->categories,$category);
+        ;
             }
         });
         ProductAttribute::all()->each(function($attribute){
@@ -33,6 +35,10 @@ class Sidebar extends Component
         //         $this->emit('filter','price','tddhgdgdg');
         //     }
         // }
+    }
+    public function priceRange(Request $request)
+    {
+        dd($request->all());
     }
     public function render()
     {

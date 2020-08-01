@@ -18,4 +18,12 @@ class UserController extends Controller
         Auth::attempt(['email'=>$request->email,'password'=>$request->password]);
         return redirect()->to(route('homepage'));
     }
+
+    public function priceRange(Request $request)
+    {
+        $min=min($request->priceRange);
+        $max=max($request->priceRange);
+        $value=['min'=>$min,'max'=>$max];
+        return redirect()->to(route('productstore',['key'=>'price','value'=>$value]));
+    }
 }

@@ -10,7 +10,7 @@
           </ul>
         </div>
         <!-- single sidebar -->
-        {{-- <div class="aa-sidebar-widget">
+        {{-- <div class="aa-sidebar-widget"> 
           <h3>Tags</h3>
           <div class="tag-cloud">
             <a href="#">Fashion</a>
@@ -27,14 +27,45 @@
           <h3>Shop By Price</h3>              
           <!-- price range -->
           <div class="aa-sidebar-price-range">
-           <form id="range" name="range">
+           <form action="{{route('price')}}">
               <div id="skipstep" class="noUi-target noUi-ltr noUi-horizontal noUi-background">
               </div>
-              <input type="hidden"  name="minPrice" id="minPrice">
-              <input type="hidden" name="maxPrice"  id="maxPrice">
-              <span id="skip-value-lower" class="example-val">30.00</span>
-             <span id="skip-value-upper" class="example-val">100.00</span>
-             <button class="aa-filter-btn" onclick="priceRange()" type="button">Filter</button>
+              <div>
+                <label>
+                  <input type="checkbox" name="priceRange[]" value="100"> Rs. 100
+                </label>
+              </div>
+              <div>
+                <label>
+                  <input type="checkbox" name="priceRange[]" value="600"> Rs. 600
+                </label>
+              </div>
+              <div>
+                <label>
+                  <input type="checkbox" name="priceRange[]" value="1200"> Rs. 1200
+                </label>
+              </div>
+              <div>
+                <label>
+                  <input type="checkbox" name="priceRange[]" value="1800"> Rs. 1800
+                </label>
+              </div>
+              <div>
+                <label>
+                  <input type="checkbox" name="priceRange[]" value="2500"> Rs. 2500
+                </label>
+              </div>
+              <div>
+                <label>
+                  <input type="checkbox" name="priceRange[]" value="4000"> Rs. 4000
+                </label>
+              </div>
+              <div>
+                <label>
+                  <input type="checkbox" name="priceRange[]" value="5000"> Rs. 5000
+                </label>
+              </div>
+              <button class="aa-filter-btn" type="submit">Filter</button>
            </form>
           </div>
           {{-- <script>

@@ -49,19 +49,12 @@
             <!-- / header top left -->
             <div class="aa-header-top-right">
               <ul class="aa-head-top-nav-right">
-                <li><a href="account.html">My Account</a></li>
                 <li class="hidden-xs"><a href={{route("wishlist")}}>Wishlist</a></li>
                 <li class="hidden-xs"><a href={{route("cart")}}>My Cart</a></li>
-                <li class="hidden-xs"><a href={{route("checkout")}}>Checkout</a></li>
                 @guest
-                  <li><a href="" data-toggle="modal" data-target="#login-modal">Login</a></li>
+                <li><a href="" data-toggle="modal" data-target="#login-modal">Login</a></li>
                 @else
-                  <li><a href="{{ route('logout') }}"
-                    onclick="event.preventDefault();
-                                  document.getElementById('logout-form').submit();" >logout</a></li>
-                  <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                    @csrf
-                </form>
+                <li><a href="{{route('userprofile')}}">My Account</a></li>
                 @endguest
               </ul>
             </div>

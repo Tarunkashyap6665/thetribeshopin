@@ -43,7 +43,7 @@
                         <tr>
                           <td><a href="#"><img src="{{$imagePath}}" alt="img"></a></td>
                           <td><a class="aa-cart-title" href="#">{{$wishlist->name}}</a></td>
-                          <td>${{$wishlist->price}}</td>
+                          <td>Rs. {{$wishlist->price}}</td>
                           <td>In Stock</td>
                           <td>
                             <p><a class="remove" style="cursor: pointer;"

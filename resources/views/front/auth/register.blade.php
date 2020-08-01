@@ -13,10 +13,19 @@
                     @csrf
                      <label for="">Username<span>*</span></label>
                      <input type="text" placeholder="Username" name="name">
+                     @error('name')
+                     <div class="alert alert-danger" role="alert">{{$message}}</div>
+                     @enderror
                      <label for="">Email<span>*</span></label>
                      <input type="text" placeholder="Email" name="email">
+                     @error('email')
+                     <div class="alert alert-danger" role="alert">{{$message}}</div>
+                     @enderror
                      <label for="">Password<span>*</span></label>
                      <input type="password" placeholder="Password" name="password">
+                     @error('password')
+                     <div class="alert alert-danger" role="alert">{{$message}}</div>
+                     @enderror
                      <label for="">Confirm Password<span>*</span></label>
                      <input type="password" placeholder="Password" name="password_confirmation">
                      <button type="submit" class="aa-browse-btn">Register</button>                     

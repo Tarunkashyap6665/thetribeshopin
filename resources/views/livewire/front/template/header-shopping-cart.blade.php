@@ -28,7 +28,7 @@
               src={{asset($imagePath)}} alt="img"></a>
           <div class="aa-cartbox-info">
             <h4><a href="#">{{$cart->name}}</a></h4>
-            <p>{{$cart->quantity}} x ${{$cart->price}}</p>
+            <p>Rs. {{$cart->quantity}} x ${{$cart->price}}</p>
           </div>
           <a class="aa-remove-product" style="cursor: pointer" wire:click="removeCartItem({{$cart->id}})"><span class="fa fa-times"></span></a>
         </li>
@@ -41,7 +41,7 @@
             Total <h5 style="display: inline;">(GST included.)</h5>
           </span>
           <span class="aa-cartbox-total-price">
-            ${{\Cart::session($userId)->getTotal()}}
+            Rs. {{\Cart::session($userId)->getTotal()}}
           </span>
         </li>
       </ul>

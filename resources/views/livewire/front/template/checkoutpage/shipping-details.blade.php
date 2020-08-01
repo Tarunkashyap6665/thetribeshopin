@@ -6,6 +6,7 @@
         </a>
       </h4>
     </div>
+    {{-- {{dd($errors)}} --}}
     @php
          if(Auth::check()){
           $userId=Auth::user()->id;
@@ -36,26 +37,38 @@
           <div class="col-md-12">
             <div class="aa-checkout-single-bill">
               <input type="text" placeholder="Name*" name="name">
-            </div>                             
+            </div>
+            @error('name')
+            <div class="alert alert-danger" role="alert">{{$message}}</div>
+            @enderror                             
           </div>
         </div> 
         <div class="row">
           <div class="col-md-12">
             <div class="aa-checkout-single-bill">
               <input type="email" placeholder="Email Address*" name="email">
-            </div>                             
+            </div>      
+            @error('email')
+            <div class="alert alert-danger" role="alert">{{$message}}</div>
+            @enderror                       
           </div>
           <div class="col-md-12">
             <div class="aa-checkout-single-bill">
               <input type="tel" placeholder="Phone*" name="mobile">
             </div>
+            @error('mobile')
+            <div class="alert alert-danger" role="alert">{{$message}}</div>
+            @enderror
           </div>
         </div> 
         <div class="row">
           <div class="col-md-12">
             <div class="aa-checkout-single-bill">
-              <textarea cols="8" rows="3" name="address">Address*</textarea>
-            </div>                             
+              <textarea cols="8" rows="3" name="address" placeholder="Address*"></textarea>
+            </div>      
+            @error('address')
+            <div class="alert alert-danger" role="alert">{{$message}}</div>
+            @enderror                       
           </div>                            
         </div>   
         <div class="row">
@@ -81,26 +94,38 @@
                 <option value="16">USA</option>
               </select> --}}
               <input type="text" placeholder="Your Country*" name="country">
-            </div>                             
+            </div>                        
+            @error('country')
+            <div class="alert alert-danger" role="alert">{{$message}}</div>
+            @enderror     
           </div>                            
         </div>
         <div class="row">
           <div class="col-md-6">
             <div class="aa-checkout-single-bill">
               <input type="text" placeholder="State*" name="state">
-            </div>                             
+            </div>      
+            @error('state')
+            <div class="alert alert-danger" role="alert">{{$message}}</div>
+            @enderror                       
           </div>
           <div class="col-md-6">
             <div class="aa-checkout-single-bill">
               <input type="text" placeholder="Postcode / ZIP*" name="pincode">
             </div>
+            @error('pincode')
+            <div class="alert alert-danger" role="alert">{{$message}}</div>
+            @enderror
           </div>
         </div>   
         <div class="row">
           <div class="col-md-12">
-            <div class="aa-checkout-single-bill">
+            <div class="aa-checkout-single-bill ">
               <input type="text" placeholder="City / Town*" name="city">
             </div>
+            @error('city')
+            <div class="alert alert-danger" role="alert">{{$message}}</div>
+            @enderror
           </div>
         </div>              
       </div>

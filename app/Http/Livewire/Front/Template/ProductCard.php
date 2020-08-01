@@ -6,13 +6,15 @@ use Livewire\Component;
 
 class ProductCard extends Component
 {
-    public $product;
+    protected $product;
     public function mount($product)
     {
         $this->product=$product;
     }
     public function render()
     {
-        return view('livewire.front.template.product-card');
+        return view('livewire.front.template.product-card',[
+            'product'=>$this->product,
+        ]);
     }
 }

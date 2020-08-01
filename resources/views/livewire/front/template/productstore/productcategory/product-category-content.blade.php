@@ -1,14 +1,14 @@
 <div>
     <div class="aa-product-catg-content">
         <div class="aa-product-catg-head">
-          <div class="aa-product-catg-head-left">
+          {{-- <div class="aa-product-catg-head-left">
             <form action="" class="aa-sort-form">
               <label for="">Sort by</label>
-              <select name="">
+              <select name="" wire:change="order()">
                 <option value="1" selected="Default">Default</option>
-                <option value="2">Name</option>
-                <option value="3">Price</option>
-                <option value="4">Date</option>
+                <option value="2" wire:model="name'">Name</option>
+                <option value="3" wire:model="price'">Price</option>
+                <option value="4" wire:model="date'">Date</option>
               </select>
             </form>
             <form action="" class="aa-show-form">
@@ -19,7 +19,7 @@
                 <option value="3">36</option>
               </select>
             </form>
-          </div>
+          </div> --}}
           <div class="aa-product-catg-head-right">
             <a id="grid-catg" href="#"><span class="fa fa-th"></span></a>
             <a id="list-catg" href="#"><span class="fa fa-list"></span></a>

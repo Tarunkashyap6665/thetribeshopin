@@ -52,7 +52,7 @@
               <div class="aa-product-view-content">
                 <h3>{{$product->name}}</h3>
                 <div class="aa-price-block">
-                  <span class="aa-product-view-price">${{$product->price}}</span>
+                  <span class="aa-product-view-price">Rs. {{$product->price}}</span>
                   <p class="aa-product-avilability">Avilability: <span>In stock</span></p>
                 </div>
                 <p>{!!$product->description!!}</p>

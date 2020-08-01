@@ -15,14 +15,13 @@ class ProfileImage extends Component
     public function mount($user)
     {
         $this->user=$user;
-    }
+    } 
 
     public function save()
     {
-        $this->validate([
-            'photo.*' => 'image|max:1024', // 1MB Max
-        ]);
-        dd($this->photo);   
+        $this->photos->storeAs('public/users',$this->photos->getClientOriginalName());
+        $this->user->avatar='users/'.$this->photos->getClientOriginalName();
+        $this->user->save();
     }
 
     public function render()

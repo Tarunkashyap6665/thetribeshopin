@@ -1,6 +1,6 @@
 <div>
     @section('title','Tribe Shop | Product Details')
-    @section('body-class','productPage')
+    {{-- @section('body-class','productPage') --}}
     <!-- catg header banner section -->
     @if (\App\Banner::count()!=0)
     <livewire:front.template.category-banner :page="'Fashion'" :type="'Women'">

@@ -3,7 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-
+use App\OrderProduct;
 class Order extends Model
 {
     protected $guarded=[];
@@ -12,4 +12,9 @@ class Order extends Model
     // {
     //     return 't3ags'.$value;
     // }
+
+    public function haveOrderProducts()
+    {
+        return $this->hasMany(OrderProduct::class);
+    }
 }
