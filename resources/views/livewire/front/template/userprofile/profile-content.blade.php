@@ -230,11 +230,11 @@
                                     </td>
                                     <td data-th="Price" class="text-center">Rs. {{$orderProduct->product_price}}</td>
                                     @if ($order->order_status)
-                                    <td data-th="Subtotal" class="text-center">
+                                    <td data-th="Status" class="text-center">
                                         <div class="alert alert-success" role="alert">Approved.</div>
                                     </td>
                                     @else
-                                    <td data-th="Subtotal" class="text-center">
+                                    <td data-th="Status" class="text-center">
                                         <div class="alert alert-warning" role="alert">Pending..</div>
                                     </td>
                                     @endif
