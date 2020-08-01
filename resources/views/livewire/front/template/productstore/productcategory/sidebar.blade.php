@@ -28,8 +28,6 @@
           <!-- price range -->
           <div class="aa-sidebar-price-range">
            <form action="{{route('price')}}">
-              <div id="skipstep" class="noUi-target noUi-ltr noUi-horizontal noUi-background">
-              </div>
               <div>
                 <label>
                   <input type="checkbox" name="priceRange[]" value="100"> Rs. 100
