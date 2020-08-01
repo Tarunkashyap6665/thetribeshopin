@@ -48,6 +48,8 @@ Route::livewire('/contact', 'front.auth.contact')
     ->layout('layouts.front.masterlayout')->name('contact'); 
 Route::livewire('/search', 'front.search-page')
     ->layout('layouts.front.masterlayout')->name('search'); 
+Route::livewire('/user-profile', 'front.user-profile')
+    ->layout('layouts.front.masterlayout')->name('userprofile'); 
 
 // Route::view('/search-page','front.search-page')->name('search-page');
 
