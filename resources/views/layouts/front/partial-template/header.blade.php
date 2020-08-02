@@ -11,36 +11,19 @@
             <div class="aa-header-top-left">
               <!-- start language -->
               <div class="aa-language">
-                <div class="dropdown">
-                  <a class="btn dropdown-toggle" href="#" type="button" id="dropdownMenu1" data-toggle="dropdown"
-                    aria-haspopup="true" aria-expanded="true">
-                    <img src={{asset("front_assets/img/flag/english.jpg")}} alt="english flag">ENGLISH
-                    <span class="caret"></span>
-                  </a>
-                  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                    <li><a href="#"><img src={{asset("front_assets/img/flag/french.jpg")}} alt="">FRENCH</a></li>
-                    <li><a href="#"><img src={{asset("front_assets/img/flag/english.jpg")}} alt="">ENGLISH</a></li>
-                  </ul>
-                </div>
+                <script type="text/javascript">
+                  $.cookie('googtrans', '/en/it');
+                  </script>
+                  <div id="google_translate_element" style="display: inline;padding-top:2px;"></div><script type="text/javascript">
+              function googleTranslateElementInit() {
+                new google.translate.TranslateElement({pageLanguage: 'en', layout: google.translate.TranslateElement.InlineLayout.SIMPLE}, 'google_translate_element');
+              }
+              </script><script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
               </div>
               <!-- / language -->
 
-              <!-- start currency -->
-              <div class="aa-currency">
-                <div class="dropdown">
-                  <a class="btn dropdown-toggle" href="#" type="button" id="dropdownMenu1" data-toggle="dropdown"
-                    aria-haspopup="true" aria-expanded="true">
-                    <i class="fa fa-usd"></i>USD
-                    <span class="caret"></span>
-                  </a>
-                  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                    <li><a href="#"><i class="fa fa-euro"></i>EURO</a></li>
-                    <li><a href="#"><i class="fa fa-jpy"></i>YEN</a></li>
-                  </ul>
-                </div>
-              </div>
-              <!-- / currency -->
-              <!-- start cellphone -->
+             
+             
               <div class="cellphone hidden-xs">
                 <p><span class="fa fa-phone"></span>00-62-658-658</p>
               </div>
@@ -66,7 +49,7 @@
   <!-- / header top  -->
 
   <!-- start header bottom  -->
-  <div class="aa-header-bottom">
+  <div class="aa-header-bottom ">
     <div class="container">
       <div class="row">
         <div class="col-md-12">

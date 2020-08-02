@@ -4,13 +4,16 @@ namespace App\Http\Livewire\Front\Template\Homepage;
 
 use App\Category;
 use Livewire\Component;
+use App\Banner;
 
 class Slider extends Component
 {
-    public $categories;
+    public $banners;
 
     public function mount(){
-        $this->categories=Category::all()->whereNull('parent_id'); 
+        if(Banner::count()!=0){
+            $this->banners=Banner::all(); 
+        }
     }
     public function render()
     {
