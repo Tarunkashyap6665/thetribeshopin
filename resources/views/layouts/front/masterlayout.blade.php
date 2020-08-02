@@ -7,6 +7,7 @@
 @include('layouts.front.partial-template.header')
 @include('layouts.front.partial-template.menu')
 @yield('content')
+{{-- @include('layouts.front.partial-template.testimonial') --}}
 @include('layouts.front.partial-template.footer')
 @include('layouts.front.partial-template.login-modal')
 

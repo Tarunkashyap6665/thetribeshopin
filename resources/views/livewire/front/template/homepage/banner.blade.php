@@ -16,7 +16,7 @@
                 $imagePath='';
               }
               @endphp
-            <a href="#"><img src={{$imageIntervention::make($imagePath)->resize(1170,170)->encode('data-url')}} alt="fashion banner img"></a>
+            <a href="#"><img src={{$imageIntervention::make($imagePath)->resize(1170,370)->encode('data-url')}} alt="fashion banner img"></a>
           </div>
           </div>
         </div>

@@ -12,6 +12,7 @@
               <!-- start language -->
               <div class="aa-language">
                 <script type="text/javascript">
+                
                   $.cookie('googtrans', '/en/it');
                   </script>
                   <div id="google_translate_element" style="display: inline;padding-top:2px;"></div><script type="text/javascript">
